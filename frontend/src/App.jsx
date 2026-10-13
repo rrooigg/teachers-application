@@ -3,15 +3,19 @@ import api  from './api';
 import './App.css'
 
 function App() {
-  const [ teachers, setTeachers ] = useState([]);
+  const [ teachers, setTeachers ] = useState([]); // array of all teachers
   const [ name, setName ] = useState('');
   const [ department, setDepartment ] = useState('');
 
+  // event->form submitting
+  // addTeacher sends request to server & function awaits because it will use (success vaiable) to decide what to do next
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // browser submits an HTML form page is reloaded
+    // event.preventDefault(); 
 
+    // .trim() because it wants to check if it has something other than whitespaces
     if(name.trim() && department.trim()) {
-      const success= await addTeacher();
+      const success= await addTeacher(); // returns true/false as seen in the function below
       
       if(success) {
         setName('');
@@ -21,6 +25,7 @@ function App() {
     }
   }
 
+  // fetch teachers from backend API 
   const fetchTeachers = async () => {
     try {
       const response = await api.get('/teachers');
@@ -32,12 +37,15 @@ function App() {
     }
   };
 
+  // adds a teacher by sending teacher's name & department to the backend
   const addTeacher = async () => {
     try {
       const response = await api.post('/teachers', {
         name: name.trim(),
         department: department.trim()
       });
+      
+      // updates list of teachers
       setTeachers((currentTeachers) => [...currentTeachers, response.data]);
       return true;
 
@@ -48,6 +56,7 @@ function App() {
 
   };
 
+  // fetch teachers once(once becuase of empty []) on the first render(/changes)
   useEffect(() => {
     fetchTeachers();
   },[]);
