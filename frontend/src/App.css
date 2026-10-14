@@ -38,3 +38,47 @@ form button {
   color: white;
   
 }
+form button:hover {
+  background-color: #45a049;
+
+}
+.list ul {
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+
+}
+.list li {
+  border: 1px solid #eee;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+}
+.list button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+
+}
+/* first button in the list div */
+.list button:first-child {
+  background-color: #2196F3;
+  color: white;
+
+}
+/* last button in the list div */
+.list button:last-child {
+  background-color: #f44336;
+  color: white;
+
+}
+.list button:hover {
+  opacity: 0.8;
+
+}
